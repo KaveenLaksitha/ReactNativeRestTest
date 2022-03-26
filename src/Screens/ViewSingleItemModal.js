@@ -128,6 +128,7 @@ const styles = StyleSheet.create({
         paddingTop: 20,
         paddingBottom: 20,
         alignItems: "center",
+        borderRadius: 10
     },
     btnUpdate: {
         width: 100,
@@ -169,6 +170,9 @@ const styles = StyleSheet.create({
     },
     vertical: {
         flexDirection: "column",
+        width: '100%',
+        paddingHorizontal: 25,
+        paddingVertical: 10
     },
     btnGrid: {
         display: 'flex',
