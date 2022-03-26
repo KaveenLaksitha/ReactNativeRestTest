@@ -133,16 +133,16 @@ export const deleteEmployeeService = async (data) => {
 
 };
 
-export const updateEmployeeService = async (empId, payload) => {
-    console.log("payload>>", payload)
+export const updateEmployeeService = async (empId, employeePayload) => {
     try {
         await axios.put(`${HOST}/api/updateEmployee/${empId}`, employeePayload);
         return {
             ok: true,
         };
     } catch (error) {
-        return {
-            ok: false, err: error.response.data.status
-        };
+        console.log("error>>>", error)
+        // return {
+        //     ok: false, err: error.response.data.status
+        // };
     }
 };

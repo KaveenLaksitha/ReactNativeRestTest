@@ -103,15 +103,15 @@ export const UpdateEmployee = ({ route }) => {
                     <TouchableHighlight underlayColor="none"
                         onPress={handleUpdate}
                     >
-                        <View style={styles.btnSubmit}>
+                        <View style={styles.btnUpdate}>
                             <Text style={{ fontSize: 18, fontWeight: 'bold', color: "white" }}>Submit</Text>
                         </View>
                     </TouchableHighlight>
                     <TouchableHighlight underlayColor="none"
                     // onPress={saveAsDraft}
                     >
-                        <View style={styles.btnDraft}>
-                            <Text style={{ fontSize: 18, fontWeight: 'bold' }}>Cancel</Text>
+                        <View style={styles.btnCancel}>
+                            <Text style={{ fontSize: 18, fontWeight: 'bold', color: "white" }}>Cancel</Text>
                         </View>
                     </TouchableHighlight>
                 </View>
@@ -145,20 +145,20 @@ const styles = StyleSheet.create({
         color: 'black',
         fontSize: 18
     },
-    btnSubmit: {
+    btnUpdate: {
         width: 350,
         height: 50,
-        backgroundColor: '#0079b9',
+        backgroundColor: '#357C3C',
         alignItems: 'center',
         padding: 10,
         borderRadius: 10,
         marginBottom: 20
 
     },
-    btnDraft: {
+    btnCancel: {
         width: 350,
         height: 50,
-        backgroundColor: '#FFCA00',
+        backgroundColor: '#52007a',
         alignItems: 'center',
         padding: 10,
         borderRadius: 10,
