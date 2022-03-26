@@ -102,11 +102,11 @@ const DATA = [
 
 export const getAllEmployeesService = async () => {
     try {
-        // const response = await axios.get(`${HOST}/api/employee`);
+        const response = await axios.get(`${HOST}/api/employee`);
         return {
             ok: true,
-            // data: response.data.data,
-            data: DATA,
+            data: response.data.data,
+            // data: DATA,
         };
     } catch (error) {
         console.log("error while getting data>>>>", error)

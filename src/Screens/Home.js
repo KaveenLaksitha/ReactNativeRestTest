@@ -56,7 +56,6 @@ export const Home = () => {
 
             <ScrollView style={styles.scrollView}>
                 <View style={styles.listContainer}>
-                    <Text style={styles.listTitle}>AVAILABLE USERS</Text>
                     {isLoading ? <ActivityIndicator /> : (
 
                         <View style={{ flex: 1, paddingTop: 20, zIndex: 9999 }}>
