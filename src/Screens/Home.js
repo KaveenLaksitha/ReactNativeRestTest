@@ -29,8 +29,13 @@ export const Home = () => {
     useEffect(() => {
         getAllEmployeesService().then((res) => {
             setLoading(true);
-            setAllUsers(res?.data);
-            setLoading(false);
+            if (res.ok) {
+                setLoading(false);
+                setAllUsers(res?.data);
+            } else {
+                setLoading(false);
+                setAllUsers([])
+            }
         })
     }, [modalVisible])
 
@@ -98,6 +103,7 @@ export const Home = () => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        backgroundColor: "#f2f2f2",
     },
     listTitle: {
         fontSize: 18,

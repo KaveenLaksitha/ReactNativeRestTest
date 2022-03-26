@@ -4,6 +4,8 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 //importin components
 import { Home } from './src/Screens/Home';
+import { UpdateEmployee } from './src/Screens/UpdateEmployee';
+
 
 
 const Stack = createNativeStackNavigator();
@@ -27,6 +29,11 @@ export default function App() {
           name="Home"
           component={Home}
           options={{ title: 'All Users' }}
+        />
+        <Stack.Screen
+          name="Update"
+          component={UpdateEmployee}
+          options={{ title: 'Update an employee' }}
         />
       </Stack.Navigator>
     </NavigationContainer>

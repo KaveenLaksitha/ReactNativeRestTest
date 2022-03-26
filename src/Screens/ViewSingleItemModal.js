@@ -1,11 +1,15 @@
 import React, { useState, useEffect } from 'react'
 import { Modal, StyleSheet, View, Text, TouchableHighlight, Dimensions, Alert, TextInput } from 'react-native'
+import { useNavigation } from '@react-navigation/native';
 import { deleteEmployeeService, updateEmployeeService } from '../Services/Service';
+import { UpdateEmployee } from './UpdateEmployee';
 
 //getting device window width
 const windowWidth = Dimensions.get('window').width;
 
 const ViewSingleItemModal = (props) => {
+
+    const navigation = useNavigation()
 
     const [fName, setFname] = useState("");
     const [lName, setLname] = useState("");
@@ -14,14 +18,21 @@ const ViewSingleItemModal = (props) => {
     const [text, onChangeText] = React.useState("Useless Text");
 
     useEffect(() => {
-        setFname(props.fName)
-        setLname(props.lName)
-        setEmail(props.email)
-    }, []);
+        setFname(props.data.fName)
+        setLname(props.data.lName)
+        setEmail(props.data.email)
+    }, [props]);
 
     //to close the modal
     const closeModal = (bool) => {
         props.changeModalVisibility(bool)
+    }
+
+    const navigateToUpdate = (data) => {
+        closeModal(false)
+        navigation.navigate("Update", {
+            data
+        })
     }
 
     const handleDelete = (data) => {
@@ -48,49 +59,6 @@ const ViewSingleItemModal = (props) => {
         })
     }
 
-    const handleUpdate = (data) => {
-
-        const payload = {
-            "fName": fName,
-            "lName": lName,
-            "email": email,
-            "nic": data.nic,
-            "designation": data.designation,
-            "DOB": data.DOB,
-            "gender": data.gender,
-            "maritalStat": data.maritalStat,
-            "currAdd": data.currAdd,
-            "permAdd": data.permAdd,
-            "mobileNo": data.mobileNo,
-            "emgContact": data.emgContact,
-            "empPic": data.empPic,
-            "cv": data.cv
-        }
-
-        // updateEmployeeService(data.empId).then((res) => {
-        //     if (res.ok) {
-        //         Alert.alert(
-        //             "Success!",
-        //             "Employee deleted successfully!",
-        //             [
-        //                 { text: "OK", onPress: () => closeModal(false) }
-
-        //             ]
-        //         );
-        //     } else {
-        //         Alert.alert(
-        //             "Error!",
-        //             "Failed to delete!",
-        //             [
-        //                 { text: "OK", onPress: () => closeModal(false) }
-
-        //             ]
-        //         );
-        //     }
-        // })
-    }
-
-
     return (
         <Modal
             animationType="slide"
@@ -106,42 +74,16 @@ const ViewSingleItemModal = (props) => {
                 <View style={styles.modalView}>
                     <View style={styles.horizontal}>
                         <View style={styles.vertical}>
-                            <Text style={styles.textTitle}>First Name: <Text style={styles.text}>{props.data.fName}</Text></Text>
-                            {/* <View style={styles.inputRow}>
-                                <Text style={styles.textTitle}>First Name:
-                                </Text>
-                                <TextInput
-                                    style={styles.input}
-                                    onChangeText={(e) => { setFname(e) }}
-                                    value={fName}
-                                />
-                            </View> */}
-                            <Text style={styles.textTitle}>Last Name: <Text style={styles.text}>{props.data.lName}</Text></Text>
-                            {/* <View style={styles.inputRow}>
-                                <Text style={styles.textTitle}>Last Name:
-                                </Text>
-                                <TextInput
-                                    style={styles.input}
-                                    onChangeText={(e) => { setLname(e) }}
-                                    value={lName}
-                                />
-                            </View> */}
-                            <Text style={styles.textTitle}>Email: <Text style={styles.text}>{props.data.email}</Text></Text>
-                            {/* <View style={styles.inputRow}>
-                                <Text style={styles.textTitle}>Email:
-                                </Text>
-                                <TextInput
-                                    style={styles.input}
-                                    onChangeText={(e) => { setEmail(e) }}
-                                    value={email}
-                                />
-                            </View> */}
+                            <Text style={styles.textTitle}>First Name: <Text style={styles.text}>{fName}</Text></Text>
+                            <Text style={styles.textTitle}>Last Name: <Text style={styles.text}>{lName}</Text></Text>
+                            <Text style={styles.textTitle}>Email: <Text style={styles.text}>{email}</Text></Text>
                         </View>
 
                     </View>
                     <View style={styles.btnGrid}>
                         <TouchableHighlight
-                            onPress={() => handleUpdate(props.data)}
+                            // onPress={() => handleUpdate(props.data)}
+                            onPress={() => navigateToUpdate(props.data)}
                             underlayColor="none">
                             <View
                                 style={styles.btnUpdate}>
