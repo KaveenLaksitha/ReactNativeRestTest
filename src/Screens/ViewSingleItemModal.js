@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react'
 import { Modal, StyleSheet, View, Text, TouchableHighlight, Dimensions, Alert, TextInput } from 'react-native'
 import { useNavigation } from '@react-navigation/native';
 import { deleteEmployeeService, updateEmployeeService } from '../Services/Service';
-import { UpdateEmployee } from './UpdateEmployee';
 
 //getting device window width
 const windowWidth = Dimensions.get('window').width;

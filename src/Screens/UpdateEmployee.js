@@ -10,8 +10,10 @@ import {
     SafeAreaView,
     Alert
 } from 'react-native'
+import { updateEmployeeService } from '../Services/Service';
 
 export const UpdateEmployee = ({ route }) => {
+    const { data } = route.params;
 
     const [fName, setFname] = useState("")
     const [lName, setLname] = useState("")
@@ -19,8 +21,6 @@ export const UpdateEmployee = ({ route }) => {
     const [permAdd, setPermAdd] = useState("")
 
 
-    const { data
-    } = route.params;
 
     useEffect(() => {
         setFname(data.fName)
@@ -29,7 +29,7 @@ export const UpdateEmployee = ({ route }) => {
         setPermAdd(data.permAdd)
     }, [])
 
-    const handleUpdate = (data) => {
+    const handleUpdate = () => {
 
         const payload = {
             "fName": fName,
@@ -48,7 +48,7 @@ export const UpdateEmployee = ({ route }) => {
             "cv": data.cv
         }
 
-        updateEmployeeService(data.empId).then((res) => {
+        updateEmployeeService(data.empId, payload).then((res) => {
             if (res.ok) {
                 Alert.alert(
                     "Success!",
@@ -101,7 +101,7 @@ export const UpdateEmployee = ({ route }) => {
 
                 <View style={{ alignItems: 'center', marginTop: 20 }}>
                     <TouchableHighlight underlayColor="none"
-                    // onPress={sendData}
+                        onPress={handleUpdate}
                     >
                         <View style={styles.btnSubmit}>
                             <Text style={{ fontSize: 18, fontWeight: 'bold', color: "white" }}>Submit</Text>
