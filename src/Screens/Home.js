@@ -10,14 +10,15 @@ import {
     Modal,
     TouchableHighlight,
     ScrollView
-} from 'react-native'
+} from 'react-native';
+import { useFocusEffect } from '@react-navigation/native';
 import { getAllEmployeesService } from '../Services/Service'
 import { ViewSingleItemModal } from './ViewSingleItemModal';
 
 //getting device window width
 const windowWidth = Dimensions.get('window').width;
 
-export const Home = () => {
+export const Home = ({ navigation }) => {
 
     const [isLoading, setLoading] = useState(true);
     const [allUsers, setAllUsers] = useState([])
@@ -27,6 +28,14 @@ export const Home = () => {
     const [modalVisible, setModalVisible] = useState(false);
 
     useEffect(() => {
+        getEmployeeFunc()
+    }, [modalVisible])
+
+    useFocusEffect(React.useCallback(() => {
+        getEmployeeFunc();
+    }, [navigation]))
+
+    const getEmployeeFunc = () => {
         getAllEmployeesService().then((res) => {
             setLoading(true);
             if (res.ok) {
@@ -37,7 +46,7 @@ export const Home = () => {
                 setAllUsers([])
             }
         })
-    }, [modalVisible])
+    }
 
     //function to open modal
     const openModal = (user) => {

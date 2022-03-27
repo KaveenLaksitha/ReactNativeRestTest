@@ -8,7 +8,7 @@ const windowWidth = Dimensions.get('window').width;
 
 const ViewSingleItemModal = (props) => {
 
-    const navigation = useNavigation()
+    const navigation = useNavigation();
 
     const [fName, setFname] = useState("");
     const [lName, setLname] = useState("");

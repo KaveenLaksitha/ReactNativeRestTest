@@ -10,10 +10,12 @@ import {
     SafeAreaView,
     Alert
 } from 'react-native'
+import { useNavigation } from '@react-navigation/native';
 import { updateEmployeeService } from '../Services/Service';
 
 export const UpdateEmployee = ({ route }) => {
     const { data } = route.params;
+    const navigation = useNavigation()
 
     const [fName, setFname] = useState("")
     const [lName, setLname] = useState("")
@@ -52,11 +54,11 @@ export const UpdateEmployee = ({ route }) => {
             if (res.ok) {
                 Alert.alert(
                     "Success!",
-                    "Employee deleted successfully!",
+                    "Employee details updated successfully!",
                     [
                         {
                             text: "OK",
-                            // onPress: () => closeModal(false) 
+                            onPress: () => navigation.navigate('Home')
                         }
 
                     ]
@@ -64,7 +66,7 @@ export const UpdateEmployee = ({ route }) => {
             } else {
                 Alert.alert(
                     "Error!",
-                    "Failed to delete!",
+                    "Failed to update!",
                     [
                         { text: "OK" }
 

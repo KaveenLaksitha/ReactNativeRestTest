@@ -28,7 +28,7 @@ export default function App() {
         <Stack.Screen
           name="Home"
           component={Home}
-          options={{ title: 'All Users' }}
+          options={{ title: 'All Employees' }}
         />
         <Stack.Screen
           name="Update"
