@@ -27,14 +27,17 @@ export const Home = ({ navigation }) => {
 
     const [modalVisible, setModalVisible] = useState(false);
 
+    //to call service when screen is loaded and when state of modalVisible is changed
     useEffect(() => {
         getEmployeeFunc()
     }, [modalVisible])
 
+    //to update list when screen is focused
     useFocusEffect(React.useCallback(() => {
         getEmployeeFunc();
     }, [navigation]))
 
+    //function to call the service
     const getEmployeeFunc = () => {
         getAllEmployeesService().then((res) => {
             setLoading(true);
